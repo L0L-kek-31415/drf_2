@@ -1,7 +1,10 @@
 from django.db import models
 from django_countries.fields import CountryField
 
-from app.DRF.main.abstract_models import CreatedAt, UpdatedAt, SoftDelete
+from main.abstract_models import CreatedAt, UpdatedAt, SoftDelete
+
+
+# from DRF.main.abstract_models import CreatedAt, UpdatedAt, SoftDelete
 
 
 class Offices(CreatedAt, UpdatedAt, SoftDelete):

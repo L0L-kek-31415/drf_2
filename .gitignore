@@ -1,4 +1,4 @@
 .env
 /.idea/
-/app/.idea/
-/app/DRF/main/migrations/
+/DRF/main/migrations/
+

@@ -2,11 +2,11 @@ version: '3.10'
 
 services:
   web:
-    build: .
+    build: ./DRF
     env_file:
       - .env
     volumes:
-      - ./app:/usr/src/app
+      - ./DRF:/usr/src/app
     ports:
       - 8000:8000
     depends_on:
