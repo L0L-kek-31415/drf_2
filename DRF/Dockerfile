@@ -11,7 +11,7 @@ RUN apt-get update \
 # Set work directory
 WORKDIR /usr/src/app/
 
-COPY ../Pipfile* /usr/src/app/
+COPY Pipfile* /usr/src/app/
 RUN pip install pipenv && pipenv install --deploy --system --ignore-pipfile
 
 COPY . /usr/src/app
