@@ -5,5 +5,7 @@ from main.routers import router
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(router.urls))
+    path('auth/', include('auth.urls')),
+    path('', include(router.urls)),
+
 ]
