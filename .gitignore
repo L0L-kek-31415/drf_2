@@ -2,3 +2,4 @@
 /.idea/
 /DRF/main/migrations/
 
+/DRF/auth/migrations/
