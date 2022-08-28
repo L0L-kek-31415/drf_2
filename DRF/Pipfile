@@ -10,6 +10,7 @@ django-countries = "*"
 flake8 = "*"
 djangorestframework-simplejwt = "*"
 psycopg2-binary = "*"
+pytest-django = "*"
 
 [dev-packages]
 
