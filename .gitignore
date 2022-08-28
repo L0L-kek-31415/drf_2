@@ -3,3 +3,6 @@
 /DRF/main/migrations/
 
 /DRF/auth/migrations/
+/DRF/.pytest_cache/
+/DRF/.idea/
+

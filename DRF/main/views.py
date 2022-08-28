@@ -1,4 +1,5 @@
 from rest_framework import generics, viewsets, permissions
+from rest_framework.permissions import AllowAny
 
 from main.models import (Company, Employer,
                              Offices, Person, Skills,
@@ -13,7 +14,7 @@ from main.serializers import (OfficeSerializer, CompanySerializer,
 class OfficeViewSet(viewsets.ModelViewSet):
     queryset = Offices.objects.filter(is_active=True)
     serializer_class = OfficeSerializer
-    permission_classes = (IsAdminOrReadOnly,)
+    permission_classes = (AllowAny,)
 
 
 class CompanyViewSet(viewsets.ModelViewSet):
@@ -43,7 +44,7 @@ class SkillViewSet(viewsets.ModelViewSet):
 class LevelViewSet(viewsets.ModelViewSet):
     queryset = Level.objects.all()
     serializer_class = LevelSerializer
-    permission_classes = (IsAdminOrReadOnly,)
+    permission_classes = (AllowAny,)
 
 
 class LanguagesViewSet(viewsets.ModelViewSet):
