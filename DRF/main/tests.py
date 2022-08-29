@@ -14,9 +14,9 @@ class Base_test(APITestCase):
         Level.objects.create(name='test 1')
         Company.objects.create(name='kek lol')
 
-
     def test_admin_add_company(self):
         client.login(username='admin', password='admin')
+
         response = self.client.post('/company/', {
             'name': 'second company',
             'cooperation': '1'
