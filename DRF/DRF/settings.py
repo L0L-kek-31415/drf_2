@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from datetime import timedelta
 from pathlib import Path
 import os
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,7 +25,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-!_$k9miv=fq1#a#iz@r)w7ffphe68*3umf$zmaoy6j8)f4^ep)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = config("DEBUG", default=0)
 
 ALLOWED_HOSTS = ["*"]
 
@@ -42,6 +44,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
+    'django_celery_beat',
+    'django_celery_results',
     # 'rest_framework.authtoken',
     # 'djoser',
 
@@ -78,7 +82,33 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'DRF.wsgi.application'
 
+CELERY_BROKER_URL = "redis://redis:6379"
+CELERY_RESULT_BACKEND = "redis://redis:6379"
 
+CELERY_BEAT_SCHEDULE = {
+      'check_models': {
+        'task': 'main.tasks.check_models',
+        'schedule': 3600.0,
+
+    },
+}
+#
+# REDIS_HOST = 'redis'
+# REDIS_PORT = '6379'
+#
+# CELERY_BROKER_REDIS_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
+#
+# CELERY_BROKEN_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
+# CELERY_BROKEN_TRANSPORT_OPTOINS = {'visibility_timeout': 3600}
+# CELERY_RESULT_BACKEND = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
+# CELERY_ACCEPT_CONTENT = ['application/json']
+# CELERY_TASK_SERIALIZER = 'json'
+# CELERY_RESULT_SERIALIZER = 'json'
+#
+#
+#
+# # this allows you to schedule items in the Django admin.
+# CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers.DatabaseScheduler'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 

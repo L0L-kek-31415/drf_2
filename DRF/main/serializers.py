@@ -2,7 +2,9 @@ from rest_framework import serializers
 from django_countries.serializers import CountryFieldMixin
 
 
-from main.models import Company, Employer, Offices, Person, Skills, Level, Languages
+from main.models import (Company, Employer, Offices,
+                         Person, Skills, Level,
+                         Languages)
 
 
 class OfficeSerializer(CountryFieldMixin, serializers.ModelSerializer):

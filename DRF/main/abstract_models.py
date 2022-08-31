@@ -20,7 +20,7 @@ class SoftDelete(models.Model):
         abstract = True
     is_active = models.BooleanField(null=False, default=True)
 
-    def delete(self):
+    def soft_delete(self):
         self.is_active = False
         self.save()
 

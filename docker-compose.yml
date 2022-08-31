@@ -17,3 +17,30 @@ services:
       - ./postgres_data:/var/lib/postgresql/data/
     env_file:
       - .env
+  redis:
+    image: "redis:latest"
+    restart: always
+    ports:
+      - '6379:6379'
+  celery:
+    build: ./DRF
+    entrypoint: celery -A DRF worker -l info
+    volumes:
+      - ./DRF/:/usr/scr/app
+    env_file:
+      - ./DRF/.env
+    depends_on:
+      - redis
+      - db
+  celery-beat:
+    build: ./DRF
+    entrypoint: celery -A DRF beat -l info
+    volumes:
+      - ./DRF/:/usr/src/app/
+    env_file:
+      - ./DRF/.env
+    depends_on:
+      - db
+      - redis
+      - celery
+
